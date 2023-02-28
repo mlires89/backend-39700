@@ -27,10 +27,10 @@ class ProductManager {
     }
     
 
-    async addProduct(title,description,precio,thumbnail,code,stock){
+    async addProduct(title,description,precio,code,stock){
        
         await this.consultarArchivo();  
-        if (title && description && precio && thumbnail && code && stock){
+        if (title && description && precio &&  code && category && stock){
             const producto = this.products.find((pr)=> pr.code === code);            
             if (producto){
                 console.log(`El producto con Código ${producto.code} ya existe`);
@@ -40,8 +40,8 @@ class ProductManager {
                     title,
                     description,
                     precio,
-                    thumbnail,
                     code,
+                    category,
                     stock
                 }
                 this.products.push(productoNuevo);
@@ -96,6 +96,9 @@ class ProductManager {
                     case "stock":
                         producto.stock = obj.stock;
                         break;
+                    case "stock":
+                        producto.category = obj.category;
+                    break;
                     default:
                         console.log('key not found');
                 }
