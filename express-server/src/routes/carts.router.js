@@ -4,8 +4,8 @@ import ProductManager from "../ProductManager.js";
 const cartsRouter = Router();
 cartsRouter.use(json());
 
-const cartManager = new CartManager("../carts.json");
-const prodManager = new ProductManager("../productos.json");
+const cartManager = new CartManager("express-server/src/carts.json");
+const prodManager = new ProductManager("express-server/src/productos.json");
 
 cartsRouter.post("/", async (req,res)=>{
     await cartManager.addCart();
@@ -18,7 +18,7 @@ cartsRouter.get("/:cid",async (req,res)=>{
     const cid = Number(req.params.cid);
     const cart = await cartManager.getCartById(cid);
     if (!cart){
-        return res.status(400).res.send({error:"No se encontró el carrito"})
+        return res.status(400).send({error:"No se encontró el carrito"})
     }
     res.send({carrito: cart})
 })

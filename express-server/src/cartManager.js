@@ -57,12 +57,12 @@ class CartManager {
     async addProdToCart(cartID,prodID){
                
         await this.consultarArchivo();  
-        const cIndex = this.carts.findIndex((c)=> c.id === cartID.id);
+        const cIndex = this.carts.findIndex((c)=> c.id === cartID);
         if (cIndex >-1){
             const pIndex = this.carts[cIndex].products.findIndex((p)=> p.id === prodID);
            
             if(pIndex >-1){
-                    cart[cIndex].products[pIndex].quantity ++;
+                    this.carts[cIndex].products[pIndex].quantity ++;
 
             }else{                
                 const newProduct = {
