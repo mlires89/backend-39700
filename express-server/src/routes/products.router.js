@@ -48,7 +48,7 @@ productsRouter.post("/",  async (req,res)=>{
 productsRouter.put("/:id", async (req,res)=>{
     const idProd = Number(req.params.id);
     const productData = {
-        ...req.params.body,
+        ...req.body,
         id:idProd,
     }
     await manager.updateProduct(productData);

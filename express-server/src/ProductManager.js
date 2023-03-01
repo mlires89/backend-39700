@@ -1,11 +1,14 @@
 import fs from "fs";
 
 class ProductManager {
+    
     constructor (path){
         this.path=path,
         this.products =[]
     }
-        
+    
+   
+    
     //creo esta funcion para consultar la data del archivo
     async consultarArchivo() {
         try {
