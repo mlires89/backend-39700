@@ -87,11 +87,11 @@ class ProductManager {
                     case "description" :
                         producto.description = obj.description;
                         break;
-                    case "precio":
-                        producto.precio = obj.precio;
+                    case "price":
+                        producto.price = obj.price;
                         break;
-                    case "thumbnail":
-                        producto.thumbnail = obj.thumbnail;
+                    case "thumbnails":
+                        producto.thumbnails = obj.thumbnails;
                         break;
                     case "code" :
                         producto.code = obj.code;
