@@ -23,7 +23,7 @@ productsRouter.get("/:id", async (req,res)=>{
     if (producto){
         res.send(producto);
     }else{
-        res.send(`Producto con id: ${id} no encontrado`)
+        res.send(`Producto con id: ${idProd} no encontrado`)
     }    
 })
 
@@ -34,7 +34,7 @@ productsRouter.post("/",  async (req,res)=>{
         thumbnails:[],
     }
     
-    if(!req.params.body.title || !req.params.body.description || !req.params.body.code || !req.params.body.price || !req.params.body.stock || !req.params.body.stock){
+    if(!productData.title || !productData.description || !productData.body.code || !productData.body.price || !productData.stock || !productData.stock){
 
         return res.status(400).send({error:"Missing parameters"});
     }
