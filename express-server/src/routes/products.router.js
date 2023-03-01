@@ -29,19 +29,19 @@ productsRouter.get("/:id", async (req,res)=>{
 
 productsRouter.post("/",  async (req,res)=>{
     const productData = {
-        ...req.params.body,
-        status:"true",
+        ...req.body,
+        status:true,
         thumbnails:[],
     }
     
-    if(!productData.title || !productData.description || !productData.body.code || !productData.body.price || !productData.stock || !productData.stock){
+    if(!productData.title || !productData.description || !productData.code || !productData.price || !productData.category || !productData.stock){
 
         return res.status(400).send({error:"Missing parameters"});
     }
 
     await manager.addProduct(productData);
-    res.status(201).res.send("producto agregado");
-
+    res.status(201).send("producto agregado");
+   
 })
 
 

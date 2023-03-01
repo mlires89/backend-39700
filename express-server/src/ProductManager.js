@@ -27,29 +27,32 @@ class ProductManager {
     }
     
 
-    async addProduct(title,description,precio,code,stock){
-       
+    async addProduct(data){
+        
         await this.consultarArchivo();  
-        if (title && description && precio &&  code && category && stock){
-            const producto = this.products.find((pr)=> pr.code === code);            
+        if (!data.title || !data.description || !data.price || !data.code || !data.category || !data.stock){
+            throw new Error (`Faltan datos para ingresar el producto`);
+        }else{
+            const producto = this.products.find((pr)=> pr.code === data.code);            
             if (producto){
                 console.log(`El producto con Código ${producto.code} ya existe`);
             }else{    
                 const productoNuevo = {
                     id:this.products.length,
-                    title,
-                    description,
-                    precio,
-                    code,
-                    category,
-                    stock
+                    title: data.title,
+                    description: data.description,
+                    price: data.price,
+                    code:data.code,
+                    category:data.category,
+                    stock:data.stock,
+                    status:data.status,
+                    thumbnails:data.thumbnails
                 }
                 this.products.push(productoNuevo);
                 let prodStr = JSON.stringify(this.products);
                 await this.escribirArchivo(prodStr);
             }
-        }else {
-            throw new Error (`Faltan datos para ingresar el producto`);
+        
         }
     }
 
