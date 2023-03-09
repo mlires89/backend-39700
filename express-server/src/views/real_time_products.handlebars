@@ -1,6 +1,6 @@
-<h1>Productos creados actualmente</h1>
+<h1>Productos en tiempo real</h1>
 <div>
-      <ul>
+      <ul id="products-container">
       {{#each productos}}
         <li>ID: {{id}}
             <ul>
@@ -14,3 +14,7 @@
       {{/each}}
     </ul>
 </div>
+
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/index.js"></script>

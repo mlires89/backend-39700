@@ -11,4 +11,9 @@ router.get("/", async (req, res) => {
   res.render("home", {productos});
 });
 
+router.get("/real-time-products", async (req, res) => {
+  const productos = await manager.getProducts();
+  res.render("real_time_products", {productos});
+});
+
 export default router;

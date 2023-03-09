@@ -13,9 +13,7 @@ app.set("view engine", "handlebars");
 app.set("views", __dirname + "/views");
 
 app.use(express.static(__dirname+"../public"));
-app.use('/api/products',productsRouter);
-app.use('/api/carts',cartsRouter);
-app.use("/", viewsRouter);
+
 
 const httpServer= app.listen(8080,()=>{
     console.log("Servidor escuchando en el puerto 8080")
@@ -25,7 +23,13 @@ const io = new Server(httpServer);
 
 io.on("connection", (socket) => {
     console.log("nuevo cliente conectado");
-    // socket.on("chat-message", (data) => {
-        
-    // });
 });
+
+app.use((req,res,next)=>{
+    req.io =io;
+    next();
+});
+
+app.use('/api/products',productsRouter);
+app.use('/api/carts',cartsRouter);
+app.use("/", viewsRouter);
