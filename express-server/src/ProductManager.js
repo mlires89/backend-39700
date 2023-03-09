@@ -1,12 +1,23 @@
 import fs from "fs";
 
 class ProductManager {
-    
+    maxId =0;
     constructor (path){
         this.path=path,
         this.products =[]
     }
     
+
+    getID(){
+        this.products.forEach(pr=>{
+
+            if (pr.id > this.maxId){
+                this.maxId=pr.id;
+            }
+        })
+        const nuevoId = this.maxId+1;
+        return nuevoId;
+    }
    
     
     //creo esta funcion para consultar la data del archivo
@@ -41,7 +52,7 @@ class ProductManager {
                 console.log(`El producto con Código ${producto.code} ya existe`);
             }else{    
                 const productoNuevo = {
-                    id:this.products.length,
+                    id:this.getID(),
                     title: data.title,
                     description: data.description,
                     price: data.price,
