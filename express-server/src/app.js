@@ -7,12 +7,11 @@ import { Server } from "socket.io";
 import __dirname from "./utils.js"; 
 
 const app = express();
-
 app.engine("handlebars", engine());
 app.set("view engine", "handlebars");
 app.set("views", __dirname + "/views");
 
-app.use(express.static(__dirname+"../public"));
+app.use(express.static(__dirname+"/../public"));
 
 
 const httpServer= app.listen(8080,()=>{
