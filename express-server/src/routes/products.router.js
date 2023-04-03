@@ -3,7 +3,7 @@ import {Router,json} from "express";
 const productsRouter = Router();
 productsRouter.use(json());
 
-import ProductManager from "../ProductManager.js";
+import {ProductManager} from "../ProductManager.js";
 const manager = new ProductManager("express-server/src/productos.json");
 
 
