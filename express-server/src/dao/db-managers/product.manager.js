@@ -13,7 +13,7 @@ class ProductManager {
     }
 
     async getProductById(id){
-     const result = await productModel.findById(id);
+     const result = await productModel.find({ _id: id});
      return result;
     }
 
@@ -21,8 +21,9 @@ class ProductManager {
         await productModel.updateOne(obj);
     }
 
-    async deleteProducto(id){
-        await productModel.findByIdAndDelete(id);
+    async deleteProduct(prodid){
+        const result = await productModel.deleteOne({ _id: prodid});
+        return result;
     }
     
 };

@@ -3,8 +3,8 @@ import {Router,json} from "express";
 const productsRouter = Router();
 productsRouter.use(json());
 
-import {ProductManager} from "../ProductManager.js";
-const manager = new ProductManager("express-server/src/productos.json");
+import {ProductManager} from "../dao/index.js";
+const manager = new ProductManager;
 
 
 productsRouter.get("/", async (req,res)=>{
@@ -18,7 +18,7 @@ productsRouter.get("/", async (req,res)=>{
 })
 
 productsRouter.get("/:id", async (req,res)=>{
-    const idProd = Number(req.params.id);
+    const idProd = req.params.id;
     const producto = await manager.getProductById(idProd);
     if (producto){
         res.send(producto);
@@ -60,8 +60,8 @@ productsRouter.put("/:id", async (req,res)=>{
 
 productsRouter.delete("/:id", async (req,res)=>{
     
-    const idProd = Number(req.params.id);
-    await manager.deleteProducto(idProd);
+    const idProd = req.params.id;
+    await manager.deleteProduct(idProd);
     res.send(`producto con id:${idProd} eliminado`);
     const products = await manager.getProducts();
     req.io.emit("products-updated", products);

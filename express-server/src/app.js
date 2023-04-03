@@ -11,8 +11,12 @@ const app = express();
 app.engine("handlebars", engine());
 app.set("view engine", "handlebars");
 app.set("views", __dirname + "/views");
-
 app.use(express.static(__dirname+"/../public"));
+
+
+const httpServer= app.listen(8080,()=>{
+    console.log("Servidor escuchando en el puerto 8080")
+});
 
 const io = new Server(httpServer);
 
@@ -33,6 +37,3 @@ mongoose.connect("mongodb+srv://matilires:MatiMongoDB4@cluster0.o8zqbmg.mongodb.
     console.log("DB connected")
 })
 
-const httpServer= app.listen(8080,()=>{
-    console.log("Servidor escuchando en el puerto 8080")
-});
