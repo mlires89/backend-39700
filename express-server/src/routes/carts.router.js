@@ -15,7 +15,7 @@ cartsRouter.post("/", async (req,res)=>{
 
 
 cartsRouter.get("/:cid",async (req,res)=>{
-    const cid = Number(req.params.cid);
+    const cid = req.params.cid;
     const cart = await cartManager.getCartById(cid);
     if (!cart){
         return res.status(400).send({error:"No se encontró el carrito"})
@@ -25,8 +25,8 @@ cartsRouter.get("/:cid",async (req,res)=>{
 
 
 cartsRouter.post("/:cid/product/:pid",async (req,res)=>{
-    const cartID = Number(req.params.cid);
-    const prodID = Number(req.params.pid);
+    const cartID = req.params.cid;
+    const prodID = req.params.pid;
     const producto = await prodManager.getProductById(prodID)
     if (producto){
         await cartManager.addProdToCart(cartID,prodID);
