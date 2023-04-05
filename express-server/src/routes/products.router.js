@@ -1,5 +1,6 @@
 import {Router,json} from "express";
 
+
 const productsRouter = Router();
 productsRouter.use(json());
 
@@ -8,13 +9,9 @@ const manager = new ProductManager;
 
 
 productsRouter.get("/", async (req,res)=>{
-    const {limit} = req.query;
-    const productos = await manager.getProducts();
-    if (limit){
-        res.send(productos.slice(0,limit));
-    }else{
-        res.send(productos)
-    }    
+    const {limit, page, sort , query} = req.query;
+    const productos = await manager.getProducts(limit, page, sort, query);
+    res.send(productos);  
 })
 
 productsRouter.get("/:id", async (req,res)=>{
@@ -47,10 +44,9 @@ productsRouter.post("/",  async (req,res)=>{
 
 
 productsRouter.put("/:id", async (req,res)=>{
-    const idProd = Number(req.params.id);
+    const idProd = req.params.id;
     const productData = {
         ...req.body,
-        id:idProd,
     }
     await manager.updateProduct(productData);
     res.send(`producto id: ${idProd} actualizado`);

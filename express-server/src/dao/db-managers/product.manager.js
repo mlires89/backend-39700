@@ -17,8 +17,8 @@ class ProductManager {
      return result;
     }
 
-    async updateProduct (obj){
-        await productModel.updateOne(obj);
+    async updateProduct (prodId, data){
+        await productModel.findOneAndUpdate({_id:prodId},data);
     }
 
     async deleteProduct(prodid){

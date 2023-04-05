@@ -1,19 +1,27 @@
 <h1>Productos en tiempo real</h1>
-<div>
-      <ul id="products-container">
-      {{#each productos}}
-        <li>ID: {{_id}}
-            <ul>
-              <li> Nombre: {{title}}</li>
-              <li> Descripcion: {{description}}</li>
-              <li>Precio: {{price}}</li>
-              <li>Codigo: {{code}}</li>
-              <li>Stock: {{stock}}</li>
-            </ul>
-        </li>
-      {{/each}}
-    </ul>
+
+
+<div class="-flex flex-wrap">
+
+{{#each productos}}
+  
+    <div class="card" style="width: 18rem;">
+      <img src={{thumbnail}} class="card-img-top" alt="imagen del producto">
+      <div class="card-body">
+        <h5 class="card-title">{{title}}</h5>
+        <p class="card-text">{{description}}</p>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Precio: {{price}}</li>
+        <li class="list-group-item">Codigo: {{code}}</li>
+        <li class="list-group-item">Stock: {{stock}}</li>
+      </ul>
+    </div>
+
+{{/each}}
+
 </div>
+
 
 <script src="/socket.io/socket.io.js"></script>
 <script src="/js/index.js"></script>
