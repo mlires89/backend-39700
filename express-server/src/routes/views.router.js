@@ -18,16 +18,30 @@ router.get("/real-time-products", async (req, res) => {
 });
 
 router.get("/products", async (req, res) => {
+  const {limit, page, sort , query} = req.query;
   const productos = await productModel.paginate(
     {},
     {
-      limit: 10,
+      limit: limit ?? 10,
       lean: true,
       page: page ?? 1,
     }
   );
 
   res.render("products", {productos});
+});
+
+
+router.get("/login", (req,res)=>{
+  res.render("login");
+});
+
+router.get("/perfil", (req,res)=>{
+  res.render("perfil");
+});
+
+router.get("/registro", (req,res)=>{
+  res.render("registro");
 });
 
 export default router;

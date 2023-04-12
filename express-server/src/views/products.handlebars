@@ -1,1 +1,24 @@
-//todo
+
+</div>
+  <div id="prodslist">
+    <ul>
+      {{#each productos.docs}}
+        <br />
+        <li>Titulo:{{title}}, Id:{{id}}, Precio{{price}}, Stock:{{stock}}</li>
+    {{/each}}
+    </ul>
+  </div>
+  {{#if productos.hasPrevPage}}
+        <a href="/products/?page={{productos.prevPage}}">Anterior</a>
+        {{/if}}
+        <span>Página {{productos.page}} de {{productos.totalPages}}</span>
+        {{#if productos.hasNextPage}}
+        <a href="/products/?page={{productos.nextPage}}">Siguiente</a>
+        {{/if}}
+</div>
+
+  <div>
+    <form method="post" action="/api/sessions/logout">
+        <button type="submit">Logout</button>
+    </form>
+</div>
